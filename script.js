@@ -12,7 +12,5 @@ function getComputerChoice() {
       computerChoice = "Scissors";
       break;
   }
-  console.log(computerChoice);
+  return computerChoice;
 }
-
-getComputerChoice();
