@@ -66,7 +66,6 @@ function game() {
   } else if (playerPoints < computerPoints) {
     console.log("GAME OVER! You have LOST against the computer.");
   } else console.log("It's a TIE! Do you want to try again?");
-  // compare who has more points and log the winner
 }
 
 console.log(game());
