@@ -16,28 +16,30 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-// Decide what the user shows
-let playerChoice = prompt(
-  "What do you want to show - rock, paper, or scissors?"
-).toLowerCase();
-
 // Compare inputs and declare the winner
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection === computerSelection) {
+function playRound() {
+  const playerChoice = prompt(
+    "What do you want to show - rock, paper, or scissors?"
+  ).toLowerCase();
+  const computerChoice = getComputerChoice();
+
+  if (playerChoice === computerChoice) {
     return "It's a DRAW. Go again.";
   } else if (
-    (playerSelection === "rock" && computerSelection === "paper") ||
-    (playerSelection === "paper" && computerSelection === "scissors") ||
-    (playerSelection === "scissors" && computerSelection === "rock")
+    (playerChoice === "rock" && computerChoice === "paper") ||
+    (playerChoice === "paper" && computerChoice === "scissors") ||
+    (playerChoice === "scissors" && computerChoice === "rock")
   ) {
-    return `You lose! The computer has shown ${computerSelection} and beat your ${playerSelection}`;
+    return `You lose! The computer has shown ${computerChoice} and beat your ${playerChoice}`;
   } else if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper")
+    (playerChoice === "rock" && computerChoice === "scissors") ||
+    (playerChoice === "paper" && computerChoice === "rock") ||
+    (playerChoice === "scissors" && computerChoice === "paper")
   ) {
-    return `You win! The computer has shown ${computerSelection} and lost to your ${playerSelection}`;
+    return `You win! The computer has shown ${computerChoice} and lost to your ${playerChoice}`;
   } else {
-    return `You entered ${playerSelection} which is not a valid option`;
+    return `You entered ${playerChoice} which is not a valid option`;
   }
 }
+
+console.log(playRound());
