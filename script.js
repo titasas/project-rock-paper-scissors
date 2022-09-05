@@ -23,22 +23,24 @@ function playRound() {
   ).toLowerCase();
   const computerChoice = getComputerChoice();
 
-  if (playerChoice === computerChoice) {
-    return "It's a DRAW. Go again.";
-  } else if (
-    (playerChoice === "rock" && computerChoice === "paper") ||
-    (playerChoice === "paper" && computerChoice === "scissors") ||
-    (playerChoice === "scissors" && computerChoice === "rock")
-  ) {
-    return `You lose! The computer has shown ${computerChoice} and beat your ${playerChoice}`;
-  } else if (
-    (playerChoice === "rock" && computerChoice === "scissors") ||
-    (playerChoice === "paper" && computerChoice === "rock") ||
-    (playerChoice === "scissors" && computerChoice === "paper")
-  ) {
-    return `You win! The computer has shown ${computerChoice} and lost to your ${playerChoice}`;
-  } else {
-    return `You entered ${playerChoice} which is not a valid option`;
+  function compareChoices() {
+    if (playerChoice === computerChoice) {
+      return "It's a DRAW. Go again.";
+    } else if (
+      (playerChoice === "rock" && computerChoice === "paper") ||
+      (playerChoice === "paper" && computerChoice === "scissors") ||
+      (playerChoice === "scissors" && computerChoice === "rock")
+    ) {
+      return `You lose! The computer has shown ${computerChoice} and beat your ${playerChoice}`;
+    } else if (
+      (playerChoice === "rock" && computerChoice === "scissors") ||
+      (playerChoice === "paper" && computerChoice === "rock") ||
+      (playerChoice === "scissors" && computerChoice === "paper")
+    ) {
+      return `You win! The computer has shown ${computerChoice} and lost to your ${playerChoice}`;
+    } else {
+      return `You entered ${playerChoice} which is not a valid option`;
+    }
   }
 }
 
