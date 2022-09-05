@@ -1,0 +1,59 @@
+body {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "Lucida Sans", sans-serif;
+  background-color: #92a8d1;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo-img {
+  padding-top: 10px;
+  width: 35%;
+}
+
+h1 {
+  margin-top: 5px;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 54px;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-size: 42px;
+  margin-bottom: 150px;
+}
+
+.pointsCounter {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  padding: 20px;
+}
+
+.pointsCounter p {
+  font-size: 25px;
+  margin-top: 0;
+}
+
+.rps__options {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 50px;
+}
+
+.rps__icon {
+  width: 250px;
+  height: 250px;
+  padding: 15px;
+  border: 1px solid #6a7b9a;
+  border-radius: 15px;
+  box-shadow: 0 0 5px;
+}
