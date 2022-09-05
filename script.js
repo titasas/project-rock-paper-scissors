@@ -1,3 +1,7 @@
+let playerPoints = 0;
+let computerPoints = 0;
+let roundsPlayed = 0;
+
 // Figure out what the computer shows
 function getComputerChoice() {
   let computerChoice = " ";
@@ -16,33 +20,53 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-// Compare inputs and declare the winner
+// Get inputs, compare and declare the winner
 function playRound() {
   const playerChoice = prompt(
     "What do you want to show - rock, paper, or scissors?"
   ).toLowerCase();
   const computerChoice = getComputerChoice();
 
-  function compareChoices() {
-    if (playerChoice === computerChoice) {
+  function compareChoices(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
       return "It's a DRAW. Go again.";
     } else if (
-      (playerChoice === "rock" && computerChoice === "paper") ||
-      (playerChoice === "paper" && computerChoice === "scissors") ||
-      (playerChoice === "scissors" && computerChoice === "rock")
+      (playerSelection === "rock" && computerSelection === "paper") ||
+      (playerSelection === "paper" && computerSelection === "scissors") ||
+      (playerSelection === "scissors" && computerSelection === "rock")
     ) {
-      return `You lose! The computer has shown ${computerChoice} and beat your ${playerChoice}`;
+      roundsPlayed++;
+      computerPoints++;
+      return `You lose! The computer has shown ${computerSelection} and beat your ${playerSelection}`;
     } else if (
-      (playerChoice === "rock" && computerChoice === "scissors") ||
-      (playerChoice === "paper" && computerChoice === "rock") ||
-      (playerChoice === "scissors" && computerChoice === "paper")
+      (playerSelection === "rock" && computerSelection === "scissors") ||
+      (playerSelection === "paper" && computerSelection === "rock") ||
+      (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-      return `You win! The computer has shown ${computerChoice} and lost to your ${playerChoice}`;
+      roundsPlayed++;
+      playerPoints++;
+      return `You win! The computer has shown ${computerSelection} and lost to your ${playerSelection}`;
     } else {
-      return `You entered ${playerChoice} which is not a valid option`;
+      return `You entered ${playerSelection} which is not a valid option`;
     }
   }
-  return compareChoices();
+  return compareChoices(playerChoice, computerChoice);
 }
 
-console.log(playRound());
+// Play 5 rounds and declare a winner of the whole game
+function game() {
+  for (let i = 1; i <= 5; i++) {
+    console.log(`Round ${i}. ${playRound()}`);
+    console.log(
+      `You have ${playerPoints} points, and the computer has ${computerPoints} points.`
+    );
+  }
+  if (playerPoints > computerPoints) {
+    console.log("CONGRATULATIONS! You have WON against the computer.");
+  } else if (playerPoints < computerPoints) {
+    console.log("GAME OVER! You have LOST against the computer.");
+  } else console.log("It's a TIE! Do you want to try again?");
+  // compare who has more points and log the winner
+}
+
+console.log(game());
