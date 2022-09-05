@@ -42,6 +42,7 @@ function playRound() {
       return `You entered ${playerChoice} which is not a valid option`;
     }
   }
+  return compareChoices();
 }
 
 console.log(playRound());
