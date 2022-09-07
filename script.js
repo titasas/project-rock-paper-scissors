@@ -10,16 +10,22 @@ let playerChoice = " ";
 
 // Get player's choice
 ROCK.addEventListener("click", () => {
-  playerChoice = "rock";
-  console.log(playRound(playerChoice, getComputerChoice()));
+  if (roundsPlayed === 0) {
+    playerChoice = "rock";
+    game(playerChoice, getComputerChoice());
+  } else return (playerChoice = "rock");
 });
 PAPER.addEventListener("click", () => {
-  playerChoice = "paper";
-  console.log(playRound(playerChoice, getComputerChoice()));
+  if (roundsPlayed === 0) {
+    playerChoice = "paper";
+    game(playerChoice, getComputerChoice());
+  } else return (playerChoice = "paper");
 });
 SCISSORS.addEventListener("click", () => {
-  playerChoice = "scissors";
-  console.log(playRound(playerChoice, getComputerChoice()));
+  if (roundsPlayed === 0) {
+    playerChoice = "scissors";
+    game(playerChoice, getComputerChoice());
+  } else return (playerChoice = "scissors");
 });
 
 // Figure out what the computer shows
@@ -46,7 +52,7 @@ function playRound(playerSelection, computerSelection) {
 
   function compareChoices(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-      return "It's a DRAW. Go again.";
+      return "It's a TIE. Go again.";
     } else if (
       (playerSelection === "rock" && computerSelection === "paper") ||
       (playerSelection === "paper" && computerSelection === "scissors") ||
@@ -71,16 +77,23 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // Play 5 rounds and declare a winner of the whole game
-// function game() {
-//   for (let i = 1; i <= 5; i++) {
-//     console.log(`Round ${i}. ${playRound(playerChoice, getComputerChoice())}`);
-//     console.log(
-//       `You have ${playerPoints} points, and the computer has ${computerPoints} points.`
-//     );
-//   }
-//   if (playerPoints > computerPoints) {
-//     console.log("CONGRATULATIONS! You have WON against the computer.");
-//   } else if (playerPoints < computerPoints) {
-//     console.log("GAME OVER! You have LOST against the computer.");
-//   } else console.log("It's a TIE! Do you want to try again?");
-// }
+function game(playerSelection, computerSelection) {
+  for (let i = 0; i < 5; i++) {
+    console.log(playerSelection);
+    roundsPlayed = i;
+    // HOW TO MAKE IT WAIT FOR THE NEXT ADD EVENT LISTENER HERE? GOOGLING NOW...
+    playRound(playerSelection, computerSelection);
+  }
+  roundsPlayed = 0;
+  // for (let i = 1; i <= 5; i++) {
+  //   console.log(`Round ${i}. ${playRound(playerChoice, getComputerChoice())}`);
+  //   console.log(
+  //     `You have ${playerPoints} points, and the computer has ${computerPoints} points.`
+  //   );
+  // }
+  // if (playerPoints > computerPoints) {
+  //   console.log("CONGRATULATIONS! You have WON against the computer.");
+  // } else if (playerPoints < computerPoints) {
+  //   console.log("GAME OVER! You have LOST against the computer.");
+  // } else console.log("It's a TIE! Do you want to try again?");
+}
