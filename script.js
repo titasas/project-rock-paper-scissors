@@ -1,31 +1,30 @@
 let playerPoints = 0;
 let computerPoints = 0;
 let roundsPlayed = 0;
-let updated = false;
 
 const ROCK = document.querySelector("#rock__icon");
 const PAPER = document.querySelector("#paper__icon");
 const SCISSORS = document.querySelector("#scissors__icon");
 
+let playerCount = document.querySelector("#playerCount");
+let computerCount = document.querySelector("#computerCount");
+
 let playerChoice = " ";
 
 // Get player's choice
 ROCK.addEventListener("click", () => {
-  updated = true;
   if (roundsPlayed === 0) {
     playerChoice = "rock";
     game(playerChoice, getComputerChoice());
   } else return (playerChoice = "rock");
 });
 PAPER.addEventListener("click", () => {
-  updated = true;
   if (roundsPlayed === 0) {
     playerChoice = "paper";
     game(playerChoice, getComputerChoice());
   } else return (playerChoice = "paper");
 });
 SCISSORS.addEventListener("click", () => {
-  updated = true;
   if (roundsPlayed === 0) {
     playerChoice = "scissors";
     game(playerChoice, getComputerChoice());
@@ -64,6 +63,8 @@ function playRound(playerSelection, computerSelection) {
     ) {
       roundsPlayed++;
       computerPoints++;
+      // This one is not working below
+      computerCount.innerText = `Computer points: ${computerPoints}`;
       return `You lose! The computer has shown ${computerSelection} and beat your ${playerSelection}`;
     } else if (
       (playerSelection === "rock" && computerSelection === "scissors") ||
@@ -72,6 +73,8 @@ function playRound(playerSelection, computerSelection) {
     ) {
       roundsPlayed++;
       playerPoints++;
+      // This one is not working below
+      playerCount.innerText = `Player points: ${playerPoints}`;
       return `You win! The computer has shown ${computerSelection} and lost to your ${playerSelection}`;
     } else {
       return `You entered ${playerSelection} which is not a valid option`;
@@ -83,12 +86,10 @@ function playRound(playerSelection, computerSelection) {
 // Play 5 rounds and declare a winner of the whole game
 function game(playerSelection, computerSelection) {
   for (let i = 0; i < 5; i++) {
-    updated = false;
     console.log(playerSelection);
     roundsPlayed = i;
     // HOW TO MAKE IT WAIT FOR THE NEXT ADD EVENT LISTENER HERE? GOOGLING NOW...
     playRound(playerSelection, computerSelection);
-    while (!updated) {}
   }
   roundsPlayed = 0;
   // for (let i = 1; i <= 5; i++) {
