@@ -6,14 +6,20 @@ const ROCK = document.querySelector("#rock__icon");
 const PAPER = document.querySelector("#paper__icon");
 const SCISSORS = document.querySelector("#scissors__icon");
 
+let playerChoice = " ";
+
+// Get player's choice
 ROCK.addEventListener("click", () => {
-  console.log("Clicked on rock");
+  playerChoice = "rock";
+  console.log(playRound(playerChoice, getComputerChoice()));
 });
 PAPER.addEventListener("click", () => {
-  console.log("Clicked on paper");
+  playerChoice = "paper";
+  console.log(playRound(playerChoice, getComputerChoice()));
 });
 SCISSORS.addEventListener("click", () => {
-  console.log("Clicked on scissors");
+  playerChoice = "scissors";
+  console.log(playRound(playerChoice, getComputerChoice()));
 });
 
 // Figure out what the computer shows
@@ -34,13 +40,8 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-// Get inputs, compare and declare the winner
-function playRound() {
-  // Add event listners here and assign them to playerChoice
-
-  // const playerChoice = prompt(
-  //   "What do you want to show - rock, paper, or scissors?"
-  // ).toLowerCase();
+// Compare and declare the winner
+function playRound(playerSelection, computerSelection) {
   const computerChoice = getComputerChoice();
 
   function compareChoices(playerSelection, computerSelection) {
@@ -72,7 +73,7 @@ function playRound() {
 // Play 5 rounds and declare a winner of the whole game
 // function game() {
 //   for (let i = 1; i <= 5; i++) {
-//     console.log(`Round ${i}. ${playRound()}`);
+//     console.log(`Round ${i}. ${playRound(playerChoice, getComputerChoice())}`);
 //     console.log(
 //       `You have ${playerPoints} points, and the computer has ${computerPoints} points.`
 //     );
