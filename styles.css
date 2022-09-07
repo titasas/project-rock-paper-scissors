@@ -56,4 +56,13 @@ h2 {
   border: 1px solid #6a7b9a;
   border-radius: 15px;
   box-shadow: 0 0 5px;
+  cursor: pointer;
+}
+
+.rps__icon:hover {
+  box-shadow: 0 0 5px #fff;
+}
+
+.rps__icon:active {
+  background-color: #6b709a;
 }
