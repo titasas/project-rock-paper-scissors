@@ -61,23 +61,15 @@ function playRound(playerSelection, computerSelection) {
       (playerSelection === "paper" && computerSelection === "scissors") ||
       (playerSelection === "scissors" && computerSelection === "rock")
     ) {
-      roundsPlayed++;
       computerPoints++;
-      // This one is not working below
+      console.log("Computer: " + computerPoints);
       computerCount.innerText = `Computer points: ${computerPoints}`;
       return `You lose! The computer has shown ${computerSelection} and beat your ${playerSelection}`;
-    } else if (
-      (playerSelection === "rock" && computerSelection === "scissors") ||
-      (playerSelection === "paper" && computerSelection === "rock") ||
-      (playerSelection === "scissors" && computerSelection === "paper")
-    ) {
-      roundsPlayed++;
+    } else {
       playerPoints++;
-      // This one is not working below
+      console.log("Player: " + playerPoints);
       playerCount.innerText = `Player points: ${playerPoints}`;
       return `You win! The computer has shown ${computerSelection} and lost to your ${playerSelection}`;
-    } else {
-      return `You entered ${playerSelection} which is not a valid option`;
     }
   }
   return compareChoices(playerChoice, computerChoice);
@@ -86,10 +78,10 @@ function playRound(playerSelection, computerSelection) {
 // Play 5 rounds and declare a winner of the whole game
 function game(playerSelection, computerSelection) {
   for (let i = 0; i < 5; i++) {
-    console.log(playerSelection);
+    console.log("You choose " + playerSelection);
     roundsPlayed = i;
     // HOW TO MAKE IT WAIT FOR THE NEXT ADD EVENT LISTENER HERE? GOOGLING NOW...
-    playRound(playerSelection, computerSelection);
+    console.log(playRound(playerSelection, computerSelection));
   }
   roundsPlayed = 0;
   // for (let i = 1; i <= 5; i++) {
