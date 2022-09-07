@@ -2,6 +2,20 @@ let playerPoints = 0;
 let computerPoints = 0;
 let roundsPlayed = 0;
 
+const ROCK = document.querySelector("#rock__icon");
+const PAPER = document.querySelector("#paper__icon");
+const SCISSORS = document.querySelector("#scissors__icon");
+
+ROCK.addEventListener("click", () => {
+  console.log("Clicked on rock");
+});
+PAPER.addEventListener("click", () => {
+  console.log("Clicked on paper");
+});
+SCISSORS.addEventListener("click", () => {
+  console.log("Clicked on scissors");
+});
+
 // Figure out what the computer shows
 function getComputerChoice() {
   let computerChoice = " ";
