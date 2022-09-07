@@ -1,10 +1,14 @@
+// bandziau perdaryti event listenerius, kad vienu ypu paimtu masyva bet kolkas nepavyko. Einu miegot, reikia neuzmirsti padigginti giliau sito dalyko, example: https://www.youtube.com/watch?v=n1_vHArDBRA&ab_channel=BroCode
+
 let playerPoints = 0;
 let computerPoints = 0;
 let roundsPlayed = 0;
 
-const ROCK = document.querySelector("#rock__icon");
-const PAPER = document.querySelector("#paper__icon");
-const SCISSORS = document.querySelector("#scissors__icon");
+// const ROCK = document.querySelector("#rock__icon");
+// const PAPER = document.querySelector("#paper__icon");
+// const SCISSORS = document.querySelector("#scissors__icon");
+
+const BUTTONS = document.querySelectorAll(".rps__icon");
 
 let playerCount = document.querySelector("#playerCount");
 let computerCount = document.querySelector("#computerCount");
@@ -12,24 +16,30 @@ let computerCount = document.querySelector("#computerCount");
 let playerChoice = " ";
 
 // Get player's choice
-ROCK.addEventListener("click", () => {
-  if (roundsPlayed === 0) {
-    playerChoice = "rock";
-    game(playerChoice, getComputerChoice());
-  } else return (playerChoice = "rock");
-});
-PAPER.addEventListener("click", () => {
-  if (roundsPlayed === 0) {
-    playerChoice = "paper";
-    game(playerChoice, getComputerChoice());
-  } else return (playerChoice = "paper");
-});
-SCISSORS.addEventListener("click", () => {
-  if (roundsPlayed === 0) {
-    playerChoice = "scissors";
-    game(playerChoice, getComputerChoice());
-  } else return (playerChoice = "scissors");
-});
+BUTTONS.forEach((button) =>
+  button.addEventListener("click", () => {
+    playerChoice = button.value;
+    console.log(playerChoice);
+  })
+);
+// ROCK.addEventListener("click", () => {
+//   if (roundsPlayed === 0) {
+//     playerChoice = "rock";
+//     game(playerChoice, getComputerChoice());
+//   } else return (playerChoice = "rock");
+// });
+// PAPER.addEventListener("click", () => {
+//   if (roundsPlayed === 0) {
+//     playerChoice = "paper";
+//     game(playerChoice, getComputerChoice());
+//   } else return (playerChoice = "paper");
+// });
+// SCISSORS.addEventListener("click", () => {
+//   if (roundsPlayed === 0) {
+//     playerChoice = "scissors";
+//     game(playerChoice, getComputerChoice());
+//   } else return (playerChoice = "scissors");
+// });
 
 // Figure out what the computer shows
 function getComputerChoice() {
@@ -84,15 +94,4 @@ function game(playerSelection, computerSelection) {
     console.log(playRound(playerSelection, computerSelection));
   }
   roundsPlayed = 0;
-  // for (let i = 1; i <= 5; i++) {
-  //   console.log(`Round ${i}. ${playRound(playerChoice, getComputerChoice())}`);
-  //   console.log(
-  //     `You have ${playerPoints} points, and the computer has ${computerPoints} points.`
-  //   );
-  // }
-  // if (playerPoints > computerPoints) {
-  //   console.log("CONGRATULATIONS! You have WON against the computer.");
-  // } else if (playerPoints < computerPoints) {
-  //   console.log("GAME OVER! You have LOST against the computer.");
-  // } else console.log("It's a TIE! Do you want to try again?");
 }
