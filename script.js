@@ -1,45 +1,39 @@
-// bandziau perdaryti event listenerius, kad vienu ypu paimtu masyva bet kolkas nepavyko. Einu miegot, reikia neuzmirsti padigginti giliau sito dalyko, example: https://www.youtube.com/watch?v=n1_vHArDBRA&ab_channel=BroCode
-
 let playerPoints = 0;
 let computerPoints = 0;
 let roundsPlayed = 0;
 
-// const ROCK = document.querySelector("#rock__icon");
-// const PAPER = document.querySelector("#paper__icon");
-// const SCISSORS = document.querySelector("#scissors__icon");
+const ROCK = document.querySelector("#rock__icon");
+const PAPER = document.querySelector("#paper__icon");
+const SCISSORS = document.querySelector("#scissors__icon");
 
-const BUTTONS = document.querySelectorAll(".rps__icon");
+const INFO = document.querySelector("#game__information");
+INFO.style.fontSize = "32px";
+INFO.style.zIndex = "1";
+
+const playAgainBtn = document.createElement("button");
 
 let playerCount = document.querySelector("#playerCount");
 let computerCount = document.querySelector("#computerCount");
+playerCount.style.textDecoration = "underline";
+playerCount.style.textDecorationColor = "rgb(192,192,192, 0.5)";
+computerCount.style.textDecoration = "underline";
+computerCount.style.textDecorationColor = "rgb(192,192,192, 0.5)";
 
 let playerChoice = " ";
 
 // Get player's choice
-BUTTONS.forEach((button) =>
-  button.addEventListener("click", () => {
-    playerChoice = button.value;
-    console.log(playerChoice);
-  })
-);
-// ROCK.addEventListener("click", () => {
-//   if (roundsPlayed === 0) {
-//     playerChoice = "rock";
-//     game(playerChoice, getComputerChoice());
-//   } else return (playerChoice = "rock");
-// });
-// PAPER.addEventListener("click", () => {
-//   if (roundsPlayed === 0) {
-//     playerChoice = "paper";
-//     game(playerChoice, getComputerChoice());
-//   } else return (playerChoice = "paper");
-// });
-// SCISSORS.addEventListener("click", () => {
-//   if (roundsPlayed === 0) {
-//     playerChoice = "scissors";
-//     game(playerChoice, getComputerChoice());
-//   } else return (playerChoice = "scissors");
-// });
+ROCK.addEventListener("click", () => {
+  playerChoice = "rock";
+  playRound(playerChoice, getComputerChoice());
+});
+PAPER.addEventListener("click", () => {
+  playerChoice = "paper";
+  playRound(playerChoice, getComputerChoice());
+});
+SCISSORS.addEventListener("click", () => {
+  playerChoice = "scissors";
+  playRound(playerChoice, getComputerChoice());
+});
 
 // Figure out what the computer shows
 function getComputerChoice() {
@@ -65,33 +59,36 @@ function playRound(playerSelection, computerSelection) {
 
   function compareChoices(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-      return "It's a TIE. Go again.";
+      roundsPlayed++;
+      INFO.innerHTML = "It's a <strong>TIE</strong>. Go again.";
     } else if (
       (playerSelection === "rock" && computerSelection === "paper") ||
       (playerSelection === "paper" && computerSelection === "scissors") ||
       (playerSelection === "scissors" && computerSelection === "rock")
     ) {
+      roundsPlayed++;
       computerPoints++;
-      console.log("Computer: " + computerPoints);
       computerCount.innerText = `Computer points: ${computerPoints}`;
-      return `You lose! The computer has shown ${computerSelection} and beat your ${playerSelection}`;
+      INFO.innerHTML = `<span style="font-weight:bold;color:#E30B5C;">You lose!</span> The computer has shown <strong>${computerSelection}</strong> and beat your <strong>${playerSelection}</strong>`;
     } else {
+      roundsPlayed++;
       playerPoints++;
-      console.log("Player: " + playerPoints);
       playerCount.innerText = `Player points: ${playerPoints}`;
-      return `You win! The computer has shown ${computerSelection} and lost to your ${playerSelection}`;
+      INFO.innerHTML = `<span style="font-weight:bold;color:#508739;">You win!</span> The computer has shown <strong>${computerSelection}</strong> and lost to your <strong>${playerSelection}</strong>`;
+    }
+    if (roundsPlayed === 5) {
+      if (computerPoints === playerPoints) {
+        INFO.innerHTML = `It's a <strong>DRAW!</strong> You both fought well`;
+      } else if (computerPoints > playerPoints) {
+        INFO.innerHTML = `GAME OVER! The computer won and is laughing at your efforts`;
+      } else
+        INFO.innerHTML = `VICTORY! You destroyed the computer's last hopes`;
     }
   }
   return compareChoices(playerChoice, computerChoice);
 }
 
-// Play 5 rounds and declare a winner of the whole game
-function game(playerSelection, computerSelection) {
-  for (let i = 0; i < 5; i++) {
-    console.log("You choose " + playerSelection);
-    roundsPlayed = i;
-    // HOW TO MAKE IT WAIT FOR THE NEXT ADD EVENT LISTENER HERE? GOOGLING NOW...
-    console.log(playRound(playerSelection, computerSelection));
-  }
-  roundsPlayed = 0;
+//REBOOT THE GAME
+function reboot() {
+  INFO.innerHTML = null;
 }
