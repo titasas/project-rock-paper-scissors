@@ -3,12 +3,12 @@ body {
   margin: 0;
   font-family: "Lucida Sans", sans-serif;
   background-color: #92a8d1;
+  height: 100vh;
 }
 
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -27,14 +27,14 @@ h1 {
 h2 {
   text-transform: uppercase;
   font-size: 42px;
-  margin-bottom: 150px;
+  padding-top: 20px;
 }
 
 .pointsCounter {
   display: flex;
   justify-content: space-between;
   width: 70%;
-  padding: 20px;
+  padding-top: 20px;
 }
 
 .pointsCounter p {
@@ -56,4 +56,31 @@ h2 {
   border: 1px solid #6a7b9a;
   border-radius: 15px;
   box-shadow: 0 0 5px;
+  cursor: pointer;
+}
+
+.rps__icon:hover {
+  box-shadow: 0 0 5px #fff;
+}
+
+.rps__icon:active {
+  background-color: #6b709a;
+}
+
+#again-btn {
+  /* display: none; */
+  border: 1px solid #fff;
+  border-radius: 15px;
+  background: #92a8d1;
+  padding: 10px 15px;
+  box-shadow: 0 0 5px #fff;
+  cursor: pointer;
+  color: #fff;
+  font-size: 20px;
+  display: none;
+}
+
+#again-btn:hover {
+  background-color: #92a8e1;
+  box-shadow: 0 0 10px #fff;
 }
