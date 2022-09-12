@@ -8,9 +8,13 @@ const SCISSORS = document.querySelector("#scissors__icon");
 
 const INFO = document.querySelector("#game__information");
 INFO.style.fontSize = "32px";
-INFO.style.zIndex = "1";
+INFO.style.paddingBottom = "50px";
 
-const playAgainBtn = document.createElement("button");
+const ADDITIONAL = document.querySelector("#additional__details");
+ADDITIONAL.style.fontSize = "32px";
+ADDITIONAL.style.marginTop = "-20px";
+
+const AGAIN_BTN = document.querySelector("#again-btn");
 
 let playerCount = document.querySelector("#playerCount");
 let computerCount = document.querySelector("#computerCount");
@@ -80,15 +84,54 @@ function playRound(playerSelection, computerSelection) {
       if (computerPoints === playerPoints) {
         INFO.innerHTML = `It's a <strong>DRAW!</strong> You both fought well`;
       } else if (computerPoints > playerPoints) {
-        INFO.innerHTML = `GAME OVER! The computer won and is laughing at your efforts`;
-      } else
-        INFO.innerHTML = `VICTORY! You destroyed the computer's last hopes`;
+        INFO.innerHTML = `<span style="font-weight:bold;color:#E30B5C;">GAME OVER!</span> The computer won and is laughing at your efforts`;
+      } else {
+        INFO.innerHTML = `<span style="font-weight:bold;color:#508739;">VICTORY!</span> You destroyed the computer's last hopes`;
+      }
+      ADDITIONAL.innerHTML = `Do you want to try again?`;
+      AGAIN_BTN.style.display = "block";
+      unavailableChoice();
     }
   }
   return compareChoices(playerChoice, computerChoice);
 }
 
-//REBOOT THE GAME
+// Make choices unavailable
+function unavailableChoice() {
+  if (roundsPlayed >= 5) {
+    ROCK.addEventListener("click", () => {
+      reboot();
+      makeOptionRed(ROCK);
+    });
+    PAPER.addEventListener("click", () => {
+      reboot();
+      makeOptionRed(PAPER);
+    });
+    SCISSORS.addEventListener("click", () => {
+      reboot();
+      makeOptionRed(SCISSORS);
+    });
+  }
+}
+
+// Change option's background color to red for half a second
+function makeOptionRed(obj) {
+  obj.style.backgroundColor = "#E30B5C";
+  setTimeout(function () {
+    obj.style.backgroundColor = "#92a8d1";
+  }, 500);
+}
+
+// Reboot the game
 function reboot() {
   INFO.innerHTML = null;
+  ADDITIONAL.innerHTML = null;
+  roundsPlayed = 0;
+  playerPoints = 0;
+  playerCount.innerText = `Player points: 0`;
+  computerPoints = 0;
+  computerCount.innerText = `Computer points: 0`;
+  AGAIN_BTN.style.display = "none";
 }
+
+AGAIN_BTN.addEventListener("click", reboot);
