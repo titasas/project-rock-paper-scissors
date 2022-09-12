@@ -12,7 +12,6 @@ INFO.style.paddingBottom = "50px";
 
 const ADDITIONAL = document.querySelector("#additional__details");
 ADDITIONAL.style.fontSize = "32px";
-ADDITIONAL.style.marginTop = "-20px";
 
 const AGAIN_BTN = document.querySelector("#again-btn");
 
@@ -28,14 +27,23 @@ let playerChoice = " ";
 // Get player's choice
 ROCK.addEventListener("click", () => {
   playerChoice = "rock";
+  if (roundsPlayed >= 5) {
+    reboot();
+  }
   playRound(playerChoice, getComputerChoice());
 });
 PAPER.addEventListener("click", () => {
   playerChoice = "paper";
+  if (roundsPlayed >= 5) {
+    reboot();
+  }
   playRound(playerChoice, getComputerChoice());
 });
 SCISSORS.addEventListener("click", () => {
   playerChoice = "scissors";
+  if (roundsPlayed >= 5) {
+    reboot();
+  }
   playRound(playerChoice, getComputerChoice());
 });
 
@@ -90,35 +98,20 @@ function playRound(playerSelection, computerSelection) {
       }
       ADDITIONAL.innerHTML = `Do you want to try again?`;
       AGAIN_BTN.style.display = "block";
-      unavailableChoice();
     }
   }
   return compareChoices(playerChoice, computerChoice);
 }
 
-// Make choices unavailable
-function unavailableChoice() {
-  if (roundsPlayed >= 5) {
-    ROCK.addEventListener("click", () => {
-      reboot();
-      makeOptionRed(ROCK);
-    });
-    PAPER.addEventListener("click", () => {
-      reboot();
-      makeOptionRed(PAPER);
-    });
-    SCISSORS.addEventListener("click", () => {
-      reboot();
-      makeOptionRed(SCISSORS);
-    });
-  }
-}
-
 // Change option's background color to red for half a second
-function makeOptionRed(obj) {
+function makeOptionRed(obj, obj1, obj2) {
   obj.style.backgroundColor = "#E30B5C";
+  obj1.style.backgroundColor = "#E30B5C";
+  obj2.style.backgroundColor = "#E30B5C";
   setTimeout(function () {
     obj.style.backgroundColor = "#92a8d1";
+    obj1.style.backgroundColor = "#92a8d1";
+    obj2.style.backgroundColor = "#92a8d1";
   }, 500);
 }
 
